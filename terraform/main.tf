@@ -1,6 +1,5 @@
 provider "azurerm" {
     version = "=1.22.0"
-    subscription_id = "cd46f7e3-6631-46d9-990c-6d18ee3ba8ef"
 }
 
 variable "container_id" {
