@@ -2,6 +2,15 @@ provider "azurerm" {
     version = "=1.22.0"
 }
 
+terraform {
+  backend "azurerm" {
+    resource_group_name = "ListApp-General"
+    storage_account_name = "listapptfstatestorage"
+    container_name = "tfstate"
+    key = "listapp-feedservice"
+  }
+}
+
 variable "container_id" {
   type = "string"
 }
