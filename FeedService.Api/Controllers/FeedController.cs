@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FeedService.Api.Controllers
 {
+    [Route("api/v1/[controller]")]
     public class FeedController : Controller
     {
         [HttpGet]
