@@ -15,9 +15,16 @@ data "azurerm_container_registry" "general" {
   resource_group_name = "${data.azurerm_resource_group.general.name}"
 }
 
-data "azurerm_app_service_plan" "general" {
-  name = "PreProd-ConsumptionPlan"
+resource "azurerm_app_service_plan" "general" {
+  name = "PreProd_ConsumptionPlan"
+  location = "${data.azurerm_resource_group.general.location}"
   resource_group_name = "${data.azurerm_resource_group.general.name}"
+  kind = "Linux"
+  reserved = true
+  sku {
+    tier = "Basic"
+    size = "B1"
+  }
 }
 
 resource "azurerm_resource_group" "feed" {
@@ -29,7 +36,7 @@ resource "azurerm_app_service" "feed" {
   name                = "feedservice-dev"
   location            = "${azurerm_resource_group.feed.location}"
   resource_group_name = "${azurerm_resource_group.feed.name}"
-  app_service_plan_id = "${data.azurerm_app_service_plan.general.id}"
+  app_service_plan_id = "${azurerm_app_service_plan.general.id}"
 
   app_settings {
     WEBSITES_ENABLE_APP_SERVICE_STORAGE = false
