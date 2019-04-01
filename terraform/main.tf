@@ -63,5 +63,4 @@ resource "azurerm_app_service" "feed" {
   identity {
     type = "SystemAssigned"
   }
-
 }
