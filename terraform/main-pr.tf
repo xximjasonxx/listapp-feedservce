@@ -5,3 +5,7 @@ provider "azurerm" {
 variable "pr_number" {
   type = "string"
 }
+
+variable "image+name" {
+  
+}
